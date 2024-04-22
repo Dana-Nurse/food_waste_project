@@ -4,15 +4,15 @@ This project represents my first solo attempt at creating a project that incorpo
 
 ## Overview
 
-The Food Waste Tracker aims to help individuals track and manage their food consumption to minimize waste. The project includes two versions:
+The Food Waste Tracker aims to help individuals track and manage their food consumption to minimise waste. The project includes two versions:
 
 1. **Command Line Interface (CLI)**: The simple version of the tracker allows users to interact with the application via the command line interface.
 
-2. **Web Application (WIP)**: In progress is a more complex version of the tracker that utilizes Flask, HTTP, and other technologies to create a web-based application with a user-friendly interface.
+2. **Web Application (WIP)**: In progress is a more complex version of the tracker that utilises Flask, HTTP, and other technologies to create a web-based application with a user-friendly interface.
 
 ## Features
 
-- **Database Integration**: Utilizes SQL to manage and store data related to food consumption.
+- **Database Integration**: Utilises SQL to manage and store data related to food consumption.
 - **CLI Interface**: The command-line interface provides basic functionality for users to input and track their food consumption.
 - **Web Application (WIP)**: A work-in-progress web-based version aims to enhance user experience and accessibility.
 
