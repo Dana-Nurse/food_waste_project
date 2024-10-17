@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Tracker - Entries</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Food Tracker</h1>
+        <nav>
+            <a href="/food">Home</a>
+            <a href="/reports">Generate Reports</a>
+        </nav>
+    </header>
 
+    <main>
+        <section>
+            <h2>Food Entries</h2>
+
+            {% if food_entries %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Expiration (Weeks)</th>
+                            <th>Expiration (Months)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for food in food_entries %}
+                        <tr>
+                            <td>{{ food.name }}</td>
+                            <td>{{ food.quantity }}</td>
+                            <td>{{ food.expiration_period_weeks }}</td>
+                            <td>{{ food.expiration_period_months }}</td>
+                            <td>
+                                <form action="/food/{{ food.name }}/quantity" method="POST" style="display:inline;">
+                                    <input type="number" name="quantity" placeholder="New quantity" required>
+                                    <button type="submit">Update Quantity</button>
+                                </form>
+
+                                <form action="/food/{{ food.name }}/expiration" method="POST" style="display:inline;">
+                                    <input type="number" name="expiration_weeks" placeholder="Weeks" required>
+                                    <input type="number" name="expiration_months" placeholder="Months" required>
+                                    <button type="submit">Update Expiration</button>
+                                </form>
+
+                                <form action="/food/{{ food.name }}" method="POST" style="display:inline;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No food entries found.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Food Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>
