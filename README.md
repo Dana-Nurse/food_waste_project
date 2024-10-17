@@ -23,4 +23,4 @@ Feedback and contributions are welcome! If you have suggestions for improvement 
 
 ## Acknowledgments
 
-Special thanks to the Makers Software Engineering Foundations course for the knowledge and inspiration during the development of this project.
+Special thanks to the Makers Software Engineering Foundations course for the knowledge I gained on their course during the earlier part of this year, which helped me develop this project. 
