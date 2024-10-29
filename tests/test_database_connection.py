@@ -1,12 +1,14 @@
 # This is an example of how to use the DatabaseConnection class for the food waste tracker project
 
+import os
 from lib.database_connection import DatabaseConnection
 
-"""
-When I seed the food_entries table
-I get some records back
-"""
-def test_database_connection(db_connection):
+def test_database_connection():
+    # Use DATABASE_URL from environment or local fallback to ensure tests can run locally if not
+    db_url = os.getenv("DATABASE_URL", "postgresql://localhost/food_tracker")
+    db_connection = DatabaseConnection()
+    db_connection.connect()  # Now uses DATABASE_URL by default
+    
     # Seed the food_entries table with some test data
     db_connection.seed("seeds/food_tracker.sql")
 
