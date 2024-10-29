@@ -1,23 +1,17 @@
+import os
 import psycopg
 from psycopg.rows import dict_row
-import os
-
-# This class helps us interact with the database.
-# It wraps the underlying psycopg library that is being used.
 
 class DatabaseConnection:
-    DATABASE_NAME = "food_tracker"  
-
-    # This method connects to PostgreSQL using the psycopg library. We connect
-    # to localhost and select the database name given in argument.
     def connect(self):
         try:
-            self.connection = psycopg.connect(
-                f"postgresql://localhost/{self.DATABASE_NAME}",
-                row_factory=dict_row)
+            # Retrieve database URL from environment variable or use localhost as a fallback
+            db_url = os.getenv("DATABASE_URL", "postgresql://localhost/food_tracker")
+            self.connection = psycopg.connect(db_url, row_factory=dict_row)
         except psycopg.OperationalError:
-            raise Exception(f"Couldn't connect to the database {self.DATABASE_NAME}! " \
-                    f"Did you create it using `createdb {self.DATABASE_NAME}`?")
+            raise Exception(f"Couldn't connect to the database at {db_url}! " \
+                            "Make sure the database is running and accessible.")
+
 
     # This method seeds the database with the given SQL file.
     # It is used to set up the database so that is is ready for tests or application.
